@@ -1,0 +1,12 @@
+{
+  "name": "ASP.NET Core + Cloud SQL",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:8.0",
+
+  "postStartCommand": ".devcontainer/start-cloudsql-proxy.sh",
+
+  "forwardPorts": [5000, 5001],
+
+  "remoteEnv": {
+    "ASPNETCORE_ENVIRONMENT": "Development"
+  }
+}
