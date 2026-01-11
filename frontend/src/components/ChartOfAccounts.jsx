@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 
-const API_BASE = 'https://vigilant-meme-pjrvqgp96545hr79v-5297.app.github.dev/api';
+const API_BASE = '/api';
 
 const ChartOfAccounts = () => {
   const [accounts, setAccounts] = useState([]);

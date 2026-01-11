@@ -23,6 +23,22 @@ builder.Services.AddDbContext<AccountingDbContext>(options =>
 
 var app = builder.Build();
 
+// Automatically apply migrations
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<AccountingDbContext>();
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating the database.");
+    }
+}
+
 // Configure the HTTP request pipeline.
 app.UseRouting();
 app.UseCors("AllowAll");

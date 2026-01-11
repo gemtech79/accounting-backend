@@ -25,7 +25,15 @@ namespace AccountingBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Tenant>>> GetTenants()
         {
-            return await _context.Tenants.ToListAsync();
+            try
+            {
+                return await _context.Tenants.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                // Return the full exception details for debugging
+                return StatusCode(500, $"An error occurred: {ex}");
+            }
         }
 
         // GET: api/Tenants/5
